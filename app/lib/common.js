@@ -122,8 +122,11 @@ var common = {
     if (ref.example !== undefined) {
       return ref.example;
     } else if (ref.$ref) {
+      if (ref.$ref.includes("Where")) {
+        return ref.$ref;
+      }
       var remoteRef = this.resolveSchemaReference(ref.$ref, root)
-      if (remoteRef)
+      if (remoteRef) 
         return this.formatExampleProp(remoteRef, root, options)
     } else if (ref.properties) { // && ref.type == 'object'
       var obj = {};
